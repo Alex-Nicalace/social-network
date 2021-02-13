@@ -6,6 +6,7 @@ import Nav from "./Components/Nav.jsx";
 import Profile from "./Components/Profile.jsx";
 
 function App() {
+
     return (
         <div className='app-wrapper'>
             <Header/>
