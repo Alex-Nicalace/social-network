@@ -9,17 +9,19 @@ import {BrowserRouter, Route} from "react-router-dom"
 import Music from "./Components/Music/Music";
 import News from "./Components/News/News";
 import Settings from "./Components/Settings/Settings";
+import Post from "./Components/Profile/MyPosts/Post/Post";
+import DialogItem from "./Components/Dialogs/DialogItem/DialogItem";
+import MessageItem from "./Components/Dialogs/MessageItem/MessageItem";
 
-function App() {
-
+function App(props) {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route path='/Profile' component={Profile}/>
-                    <Route path='/Dialogs' component={Dialogs}/>
+                    <Route path='/Profile' component={() =>  <Profile post_elements = {props.post_elements} />}/>
+                    <Route path='/Dialogs' component={() => <Dialogs dialog_Elements = {props.dialog_Elements} message_elements = {props.message_elements} />}/>
                     <Route path='/Music' component={Music}/>
                     <Route path='/News' component={News}/>
                     <Route path='/Settings' component={Settings}/>

@@ -1,0 +1,21 @@
+.Dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+.Dialogs .DialogsItems {
+  padding: 10px;
+}
+.Dialogs .DialogsItems .DialogItem {
+  color: black;
+}
+.Dialogs .DialogsItems .active {
+  color: gold;
+}
+.Dialogs .MessagesItems {
+  padding: 10px;
+}
+.Dialogs .MessagesItems .MessageItem {
+  color: black;
+}
+
+/*# sourceMappingURL=Dialogs.module.css.map */

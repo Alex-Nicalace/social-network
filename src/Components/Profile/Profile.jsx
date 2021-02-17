@@ -1,16 +1,14 @@
 import React from "react";
 import s from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import Post from "./MyPosts/Post/Post";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <main className={s.mainContent}>
-            <div><img src="https://thumbs.dreamstime.com/b/abstract-bubble-rainbow-header-sky-14141610.jpg" alt=""
-                      width="100%"/></div>
-            <div>
-                ava + description
-            </div>
-            <MyPosts/>
+            <ProfileInfo/>
+            <MyPosts post_elements={props.post_elements} />
         </main>
     )
 }

@@ -1,0 +1,12 @@
+.PostsBlock {
+  padding: 10px;
+}
+.PostsBlock .Post {
+  margin: 10px;
+}
+.PostsBlock .Post img {
+  width: 50px;
+  border-radius: 30px;
+}
+
+/*# sourceMappingURL=MyPosts.module.css.map */

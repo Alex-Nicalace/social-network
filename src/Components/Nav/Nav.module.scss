@@ -2,8 +2,14 @@
   grid-area: n;
   /*border: 1px solid green ;*/
   background-color: burlywood;
+  padding: 20px;
 
   a {
     color: white;
+    text-decoration: none;
+  }
+
+  a.active{
+    color: gold;
   }
 }
