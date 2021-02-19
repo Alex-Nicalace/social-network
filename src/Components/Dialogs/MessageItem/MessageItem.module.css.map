@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"MessageItem.module.css"}
+{"version":3,"sourceRoot":"","sources":["MessageItem.module.scss"],"names":[],"mappings":"AAGE;EAEE;;AAGF;EAEE;;AAGF;EACE;EACA;;AAQA;EAGE,OAFO;EAGP,QAHO;EAIP;EACA;;AAGF;EACE;;AAGF;EACE","file":"MessageItem.module.css"}

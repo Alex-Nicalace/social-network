@@ -5,10 +5,16 @@ import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
 
 const Dialogs = (props) => {
+    let dialog_Elements = props.DialogPage.dialog_data.map(item => <DialogItem name_user={item.name_user}
+                                                                               id_user={item.id_user}
+                                                                               url_ava={item.url_ava}/>)
+    let message_elements = props.DialogPage.message_data.map(item => <MessageItem message={item.message}
+                                                                                  is_my={item.is_my}/>)
+
     return (
         <div className={s.Dialogs}>
             <div className={s.DialogsItems}>
-                {props.dialog_Elements}
+                {dialog_Elements}
                 {/*<DialogItem name_user={dialog_data[0].name_user} id_user={dialog_data[0].id_user} />*/}
                 {/*<DialogItem name_user={dialog_data[1].name_user} id_user={dialog_data[1].id_user} />*/}
                 {/*<DialogItem name_user={dialog_data[2].name_user} id_user={dialog_data[2].id_user} />*/}
@@ -16,7 +22,7 @@ const Dialogs = (props) => {
                 {/*<DialogItem name_user={dialog_data[4].name_user} id_user={dialog_data[4].id_user} />*/}
             </div>
             <div className={s.MessagesItems}>
-                {props.message_elements}
+                {message_elements}
                 {/*<MessageItem message={message_data[0].message}/>*/}
                 {/*<MessageItem message={message_data[1].message}/>*/}
                 {/*<MessageItem message={message_data[2].message}/>*/}

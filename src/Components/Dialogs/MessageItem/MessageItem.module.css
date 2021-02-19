@@ -1,3 +1,24 @@
-
+.MessageItem_right {
+  text-align: right;
+}
+.MessageItem_left {
+  text-align: left;
+}
+.MessageItem__uni {
+  display: inline-flex;
+  align-items: center;
+}
+.MessageItem__uni_circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+}
+.MessageItem__uni_circleL {
+  background-color: red;
+}
+.MessageItem__uni_circleR {
+  background-color: green;
+}
 
 /*# sourceMappingURL=MessageItem.module.css.map */

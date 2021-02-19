@@ -20,8 +20,9 @@ function App(props) {
                 <Header/>
                 <Nav/>
                 <div className='app-wrapper-content'>
-                    <Route path='/Profile' component={() =>  <Profile post_elements = {props.post_elements} />}/>
-                    <Route path='/Dialogs' component={() => <Dialogs dialog_Elements = {props.dialog_Elements} message_elements = {props.message_elements} />}/>
+                    {/*<Route path='/Profile' component={() =>  <Profile post_elements = {props.post_elements} />}/>*/}
+                    <Route path='/Profile' render={() =>  <Profile ProfilePage = {props.state.ProfilePage} />}/>
+                    <Route path='/Dialogs' component={() => <Dialogs DialogPage = {props.state.DialogPage} />}/>
                     <Route path='/Music' component={Music}/>
                     <Route path='/News' component={News}/>
                     <Route path='/Settings' component={Settings}/>

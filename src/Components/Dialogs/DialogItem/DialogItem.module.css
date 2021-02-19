@@ -1,3 +1,17 @@
-
+.DialogItem {
+  display: flex;
+}
+.DialogItem .DialogItem__urlAva img {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+.DialogItem .DialogItem__nameUser {
+  display: flex;
+  align-items: center;
+}
+.DialogItem .DialogItem__nameUser a {
+  padding: 3px;
+}
 
 /*# sourceMappingURL=DialogItem.module.css.map */
