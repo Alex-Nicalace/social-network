@@ -1,3 +1,6 @@
+import {RerenderDOM} from "./../RerenderDOM";
+import React from "react";
+
 let state = {
     ProfilePage: {
         post_data: [
@@ -7,6 +10,18 @@ let state = {
             {message: 'boy', likeCount: '3', id_post: "4"},
             {message: 'girl', likeCount: '2', id_post: "5"}
         ],
+        AddPost: () => {
+            debugger;
+            let ObjMess = {message: state.ProfilePage.current_post , likeCount: '0', id_post: "6"};
+            state.ProfilePage.post_data.push(ObjMess);
+            state.ProfilePage.current_post = '';
+            RerenderDOM(state);
+        },
+        current_post:'Hello !!!',
+        UpdateCurrentPost:(message) => {
+            state.ProfilePage.current_post = message;
+            RerenderDOM(state);
+        }
     },
     DialogPage: {
         dialog_data: [
@@ -40,7 +55,25 @@ let state = {
             {message: "Откуда ...!", id_mes: "5", is_my: "1", id_user: "1"},
             {message: "От верблюда", id_mes: "5", is_my: "0", id_user: "1"},
         ]
+    },
+    sidebar: {
+        friends: [
+            {friend_name: "Sasha", url_ava: "https://avatarko.ru/img/kartinka/2/Gubka_Bob.jpg"},
+            {friend_name: "Masha", url_ava: "https://hostenko.com/wpcafe/wp-content/uploads/rndavatar.png"},
+            {
+                friend_name: "Anna",
+                url_ava: "https://shutniki.club/wp-content/uploads/2019/12/0aeb27b230deae824f3d1bce090bc2e9.png"
+            },
+        ]
     }
 }
+
+// export let AddPost = (message) => {
+//     //debugger;
+//     let ObjMess =  {message: message, likeCount: '0', id_post: "6"};
+//     state.ProfilePage.post_data.push(ObjMess);
+//
+//     RerenderDOM(state, AddPost);
+// }
 
 export default state;

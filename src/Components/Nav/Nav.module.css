@@ -12,4 +12,26 @@
   color: gold;
 }
 
+.Friends__title {
+  text-align: center;
+  font-size: 25px;
+}
+
+.Friends__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px -3px;
+}
+.Friends__list .Friends__item {
+  margin: 0px 3px;
+}
+.Friends__list .Friends__avatar img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.Friends__list .Friends__name {
+  text-align: center;
+}
+
 /*# sourceMappingURL=Nav.module.css.map */

@@ -3,17 +3,28 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-    let post_elements = props.post_data.map(item => <Post message={item.message} likeCount={item.likeCount}/>)
+    let post_elements = props.ProfilePage.post_data.map(item => <Post message={item.message} likeCount={item.likeCount}/>);
+    let ref_dom_element = React.createRef();
+    let OnClickButton = ()=> {
+        // let text = document.getElementById("text-id").value;
+        //let text = ref_dom_element.current.value;
+        props.ProfilePage.AddPost()
+        //ref_dom_element.current.value = '';
+    }
+    let TextArea_OnChange = () =>{
+        let text = ref_dom_element.current.value;
+        props.ProfilePage.UpdateCurrentPost(text);
+    }
     return (
         <div className={s.PostsBlock}>
             <div>
                 <h3>My posts</h3>
                 <div>
                     <div>
-                        <textarea></textarea>
+                        <textarea onChange={TextArea_OnChange} ref={ref_dom_element} value={props.ProfilePage.current_post}/>
                     </div>
                     <div>
-                        <button>Add post</button>
+                        <button onClick={OnClickButton}>Add post</button>
                     </div>
                 </div>
             </div>
