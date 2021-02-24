@@ -1,19 +1,19 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
+import {GetPostCurrent_ActionCreate, SetPost_ActionCreate, SetPostCurrent_ActionCreate} from "../../../Redux/profile-reducer";
 
 const MyPosts = (props) => {
-    let post_elements = props.ProfilePage.post_data.map(item => <Post message={item.message} likeCount={item.likeCount}/>);
+    debugger;
+    let post_elements = props.ProfilePage.post_data.map(item => <Post message={item.message}
+                                                                      likeCount={item.likeCount}/>);
     let ref_dom_element = React.createRef();
-    let OnClickButton = ()=> {
-        // let text = document.getElementById("text-id").value;
-        //let text = ref_dom_element.current.value;
-        props.ProfilePage.AddPost()
-        //ref_dom_element.current.value = '';
+    let OnClickButton = () => {
+        props.dispatch(SetPost_ActionCreate());
     }
-    let TextArea_OnChange = () =>{
+    let TextArea_OnChange = () => {
         let text = ref_dom_element.current.value;
-        props.ProfilePage.UpdateCurrentPost(text);
+        props.dispatch(SetPostCurrent_ActionCreate(text));
     }
     return (
         <div className={s.PostsBlock}>
@@ -21,7 +21,8 @@ const MyPosts = (props) => {
                 <h3>My posts</h3>
                 <div>
                     <div>
-                        <textarea onChange={TextArea_OnChange} ref={ref_dom_element} value={props.ProfilePage.current_post}/>
+                        <textarea onChange={TextArea_OnChange} ref={ref_dom_element}
+                                  value={props.ProfilePage._current_post}/>
                     </div>
                     <div>
                         <button onClick={OnClickButton}>Add post</button>

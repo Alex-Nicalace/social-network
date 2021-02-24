@@ -12,20 +12,29 @@ import Settings from "./Components/Settings/Settings";
 
 function App(props) {
     return (
-        <BrowserRouter>
+        // <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Nav Friends = {props.state.sidebar.friends} />
+                <Nav Friends={props.state.sidebar.friends}/>
                 <div className='app-wrapper-content'>
                     {/*<Route path='/Profile' component={() =>  <Profile post_elements = {props.post_elements} />}/>*/}
-                    <Route path='/Profile' render={() =>  <Profile ProfilePage = {props.state.ProfilePage} />}/>
-                    <Route path='/Dialogs' component={() => <Dialogs DialogPage = {props.state.DialogPage} />}/>
+                    <Route path='/Profile'
+                           render={() => <Profile ProfilePage={props.state.ProfilePage}
+                                                  dispatch={props.dispatch}
+                                                   />} />
+
+                    <Route path='/Dialogs'
+                           render={() => <Dialogs DialogPage={props.state.DialogPage}
+                                                  //message_data={props.state.DialogPage.message_data}
+                                                  dispatch={props.dispatch}
+                                                  //message_current={props.state.DialogPage._message_current}
+                           />}/>
                     <Route path='/Music' component={Music}/>
                     <Route path='/News' component={News}/>
                     <Route path='/Settings' component={Settings}/>
                 </div>
             </div>
-        </BrowserRouter>
+        // </BrowserRouter>
     );
 }
 

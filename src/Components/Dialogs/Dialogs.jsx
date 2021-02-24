@@ -1,10 +1,15 @@
 import React from "react";
 import s from "./Dialogs.module.css";
-import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
+import {
+    GetMessageCurrent_ActionCreate,
+    SetMessage_ActionCreate,
+    SetMessageCurrent_ActionCreate
+} from "../../Redux/dialog-reducer";
 
 const Dialogs = (props) => {
+    debugger;
     let dialog_Elements = props.DialogPage.dialog_data.map(item => <DialogItem name_user={item.name_user}
                                                                                id_user={item.id_user}
                                                                                url_ava={item.url_ava}/>);
@@ -14,34 +19,33 @@ const Dialogs = (props) => {
     let textarea_Ref = React.createRef();
 
     let textarea_OnClick = () => {
-        // let text = document.getElementById('id-text').value;
-        let text = textarea_Ref.current.value;
-        alert(text);
+        props.dispatch(SetMessage_ActionCreate());
+    }
+
+    let TextArea_OnChange = (e) => {
+        //TextArea засовывает в эту функцию объект EVENT
+        //let text = textarea_Ref.current.value; // нативный способ
+        let text = e.target.value; // способ реатка вроде
+        props.dispatch(SetMessageCurrent_ActionCreate(text));
     }
 
     return (
-        <div >
+        <div>
             <div className={s.Dialogs}>
                 <div className={s.DialogsItems}>
                     {dialog_Elements}
-                    {/*<DialogItem name_user={dialog_data[0].name_user} id_user={dialog_data[0].id_user} />*/}
-                    {/*<DialogItem name_user={dialog_data[1].name_user} id_user={dialog_data[1].id_user} />*/}
-                    {/*<DialogItem name_user={dialog_data[2].name_user} id_user={dialog_data[2].id_user} />*/}
-                    {/*<DialogItem name_user={dialog_data[3].name_user} id_user={dialog_data[3].id_user} />*/}
-                    {/*<DialogItem name_user={dialog_data[4].name_user} id_user={dialog_data[4].id_user} />*/}
                 </div>
                 <div className={s.MessagesItems}>
                     {message_elements}
-                    {/*<MessageItem message={message_data[0].message}/>*/}
-                    {/*<MessageItem message={message_data[1].message}/>*/}
-                    {/*<MessageItem message={message_data[2].message}/>*/}
                 </div>
             </div>
             <div>
-                <textarea ref={textarea_Ref} name="" id="id-text" cols="30" rows=""></textarea>
-            </div>
-            <div>
-                <button onClick={textarea_OnClick}>Send message</button>
+                <div>
+                    <textarea onChange={TextArea_OnChange} ref={textarea_Ref} value={props.DialogPage._message_current}/>
+                </div>
+                <div>
+                    <button onClick={textarea_OnClick}>Send message</button>
+                </div>
             </div>
         </div>
     )

@@ -1,10 +1,27 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {RerenderDOM} from "./RerenderDOM";
-import state from "./Redux/State";
+import store from "./Redux/store-redux";
+import ReactDOM from "react-dom";
+import App from "./App";
+import {BrowserRouter} from "react-router-dom";
 
-RerenderDOM(state);
+let RerenderDOM = (state) => {
+    debugger;
+    ReactDOM.render(
+        <React.StrictMode>
+            <BrowserRouter><App state={state} dispatch={store.dispatch.bind(store)}/></BrowserRouter>
+        </React.StrictMode>,
+        document.getElementById('root')
+    )
+}
+
+RerenderDOM(store.getState());
+
+store.subscribe(() => {
+    let state = store.getState();
+    RerenderDOM(state);
+});
 
 //RerenderDOM();
 
