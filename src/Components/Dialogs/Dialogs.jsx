@@ -28,10 +28,7 @@ const Dialogs = (props) => {
         let text = e.target.value; // способ реатка вроде
         props.dispatch(SetMessageCurrent_ActionCreate(text));
     }
-djtyjdtyjdtyjdtyjdtyjdtyjdtyj
-    rsrthsrthsrthsrthsrth
-    rsrthsrthsrthsrthsrthsrth
-    srth
+
     return (
         <div>
             <div className={s.Dialogs}>
