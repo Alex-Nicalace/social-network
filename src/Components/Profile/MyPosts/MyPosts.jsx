@@ -1,19 +1,20 @@
 import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {GetPostCurrent_ActionCreate, SetPost_ActionCreate, SetPostCurrent_ActionCreate} from "../../../Redux/profile-reducer";
 
 const MyPosts = (props) => {
     debugger;
-    let post_elements = props.ProfilePage.post_data.map(item => <Post message={item.message}
+    let post_elements = props.post_data.map(item => <Post message={item.message}
                                                                       likeCount={item.likeCount}/>);
     let ref_dom_element = React.createRef();
     let OnClickButton = () => {
-        props.dispatch(SetPost_ActionCreate());
+        //props.dispatch(SetPost_ActionCreate());
+        props.OnAddPost();
     }
     let TextArea_OnChange = () => {
         let text = ref_dom_element.current.value;
-        props.dispatch(SetPostCurrent_ActionCreate(text));
+        //props.dispatch(SetPostCurrent_ActionCreate(text));
+        props.OnChangeTextArea(text);
     }
     return (
         <div className={s.PostsBlock}>
@@ -22,7 +23,7 @@ const MyPosts = (props) => {
                 <div>
                     <div>
                         <textarea onChange={TextArea_OnChange} ref={ref_dom_element}
-                                  value={props.ProfilePage._current_post}/>
+                                  value={props.current_post}/>
                     </div>
                     <div>
                         <button onClick={OnClickButton}>Add post</button>

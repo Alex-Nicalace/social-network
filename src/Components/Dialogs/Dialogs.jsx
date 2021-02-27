@@ -2,14 +2,8 @@ import React from "react";
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {
-    GetMessageCurrent_ActionCreate,
-    SetMessage_ActionCreate,
-    SetMessageCurrent_ActionCreate
-} from "../../Redux/dialog-reducer";
 
 const Dialogs = (props) => {
-    debugger;
     let dialog_Elements = props.DialogPage.dialog_data.map(item => <DialogItem name_user={item.name_user}
                                                                                id_user={item.id_user}
                                                                                url_ava={item.url_ava}/>);
@@ -18,15 +12,15 @@ const Dialogs = (props) => {
 
     let textarea_Ref = React.createRef();
 
-    let textarea_OnClick = () => {
-        props.dispatch(SetMessage_ActionCreate());
+    let Button_OnClick = () => {
+        props.textarea_OnClick();
     }
 
     let TextArea_OnChange = (e) => {
         //TextArea засовывает в эту функцию объект EVENT
         //let text = textarea_Ref.current.value; // нативный способ
         let text = e.target.value; // способ реатка вроде
-        props.dispatch(SetMessageCurrent_ActionCreate(text));
+        props.TextArea_OnChange(text);
     }
 
     return (
@@ -44,7 +38,7 @@ const Dialogs = (props) => {
                     <textarea onChange={TextArea_OnChange} ref={textarea_Ref} value={props.DialogPage._message_current}/>
                 </div>
                 <div>
-                    <button onClick={textarea_OnClick}>Send message</button>
+                    <button onClick={Button_OnClick}>Send message</button>
                 </div>
             </div>
         </div>

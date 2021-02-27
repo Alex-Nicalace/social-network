@@ -1,6 +1,5 @@
 const SETPOST = 'SET-POST';
 const SETPOSTCURRENT = 'SET-POST-CURRENT';
-const GETPOSTCURRENT = 'GET-POST-CURRENT';
 
 let InitialState = {
     post_data: [
@@ -22,9 +21,7 @@ const profileReducer = (state = InitialState, action) => {
             //this._RerenderDOM(this._state);
             break
         case SETPOSTCURRENT:
-            //this.setPostCurrent(action.post);
             state._current_post = action.post;
-            //this._RerenderDOM(this._state);
             break
     }
     return state;
@@ -34,4 +31,3 @@ export default profileReducer;
 
 export const SetPost_ActionCreate = () => ({type: SETPOST});
 export const SetPostCurrent_ActionCreate = (text) => ({type: SETPOSTCURRENT, post: text});
-export const GetPostCurrent_ActionCreate = () => ({type: GETPOSTCURRENT});

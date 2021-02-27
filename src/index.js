@@ -10,7 +10,7 @@ let RerenderDOM = (state) => {
     debugger;
     ReactDOM.render(
         <React.StrictMode>
-            <BrowserRouter><App state={state} dispatch={store.dispatch.bind(store)}/></BrowserRouter>
+            <BrowserRouter><App store={store}/></BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     )
