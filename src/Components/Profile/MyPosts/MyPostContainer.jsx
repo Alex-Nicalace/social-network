@@ -4,24 +4,29 @@ import {
     SetPostCurrent_ActionCreate
 } from "../../../Redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import {connect} from "react-redux";
 
-const MyPostsContainer = (props) => {
-    let ProfilePage = props.store.getState().ProfilePage;
-
-    let OnClickButton = () => {
-        let action = SetPost_ActionCreate();
-        props.store.dispatch(action);
+let mapStateToProps = (state) => {
+    return {
+        post_data: state.ProfilePage.post_data,
+        current_post: state.ProfilePage.current_post,
     }
-    let TextArea_OnChange = (text) => {
-        let action = SetPostCurrent_ActionCreate(text);
-        props.store.dispatch(action);
-    }
-    return (
-        <MyPosts post_data={ProfilePage.post_data} OnAddPost={OnClickButton} OnChangeTextArea={TextArea_OnChange}
-                 current_post={ProfilePage._current_post}/>
-
-
-    )
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        OnAddPost: () => {
+            let action = SetPost_ActionCreate();
+            dispatch(action);
+        },
+        OnChangeTextArea: (text) => {
+            let action = SetPostCurrent_ActionCreate(text);
+            dispatch(action);
+        }
+    }
+
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 export default MyPostsContainer;

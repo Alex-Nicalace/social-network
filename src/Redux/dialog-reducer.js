@@ -1,6 +1,5 @@
 const SETMESSAGE = 'SET-MESSAGE';
 const SETMESSAGECURRENT = 'SET-MESSAGE-CURRENT';
-const GETMESSAGECURRENT = 'GET-MESSAGE-CURRENT';
 
 let InitialState = {
     dialog_data: [
@@ -38,22 +37,26 @@ let InitialState = {
 }
 
 const dialogReducer = (state = InitialState, action) => {
-    debugger;
     switch (action.type) {
-        case SETMESSAGE:
+        case SETMESSAGE: {
             let obj_tmp = {message: state._message_current, id_mes: "6", is_my: "1", id_user: "1"};
-            state.message_data.push(obj_tmp);
-            state._message_current = '';
-            break;
-        case SETMESSAGECURRENT:
-            state._message_current = action.message;
-            break;
+            let stateCopy = {...state};
+            stateCopy.message_data = [...state.message_data]
+            stateCopy.message_data.push(obj_tmp);
+            stateCopy._message_current = '';
+            return stateCopy;
+        }
+        case SETMESSAGECURRENT: {
+            let stateCopy = {...state};
+            stateCopy._message_current = action.message;
+            return stateCopy;
+        }
+        default:
+            return state;
     }
-    return state;
 }
 
 export default dialogReducer;
 
 export const SetMessage_ActionCreate = () => ({type: SETMESSAGE});
 export const SetMessageCurrent_ActionCreate = (text) => ({type: SETMESSAGECURRENT, message: text});
-export const GetMessageCurrent_ActionCreate = () => ({type: GETMESSAGECURRENT});

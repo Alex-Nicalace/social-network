@@ -1,31 +1,31 @@
 import React from "react";
 
 import {
-    GetMessageCurrent_ActionCreate,
     SetMessage_ActionCreate,
     SetMessageCurrent_ActionCreate
 } from "../../Redux/dialog-reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
 
-const DialogsContainer = (props) => {
-
-    let textarea_OnClick = () => {
-        let action = SetMessage_ActionCreate();
-        props.store.dispatch(action);
+let mapStateToProps = (state) => {
+    return {
+        DialogPage: state.DialogPage,
     }
-
-    let TextArea_OnChange = (text) => {
-        let action = SetMessageCurrent_ActionCreate(text);
-        props.store.dispatch(action);
-    }
-
-    let DialogPage = props.store.getState().DialogPage;
-
-    return (
-        <Dialogs DialogPage={DialogPage}
-                 textarea_OnClick={textarea_OnClick}
-                 TextArea_OnChange={TextArea_OnChange}/>
-    )
 }
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        textarea_OnClick: () => {
+            let action = SetMessage_ActionCreate();
+            dispatch(action);
+        },
+        TextArea_OnChange: (text) => {
+            let action = SetMessageCurrent_ActionCreate(text);
+            dispatch(action);
+        }
+    }
+}
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;
