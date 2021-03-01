@@ -9,6 +9,7 @@ import Music from "./Components/Music/Music";
 import News from "./Components/News/News";
 import Settings from "./Components/Settings/Settings";
 import DialogsContainer from "./Components/Dialogs/DialogsContainer";
+import UsersContainer from "./Components/Users/UsersContainer";
 
 function App(props) {
     return (
@@ -19,6 +20,7 @@ function App(props) {
                 {/*<Route path='/Profile' component={() =>  <Profile post_elements = {props.post_elements} />}/>*/}
                 <Route path='/Profile' render={() => <Profile/>}/>
                 <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
+                <Route path='/Users' render={() => <UsersContainer/>}/>
                 <Route path='/Music' component={Music}/>
                 <Route path='/News' component={News}/>
                 <Route path='/Settings' component={Settings}/>

@@ -38,19 +38,15 @@ let InitialState = {
 
 const dialogReducer = (state = InitialState, action) => {
     switch (action.type) {
-        case SETMESSAGE: {
+        case SETMESSAGE:
             let obj_tmp = {message: state.message_current, id_mes: "6", is_my: "1", id_user: "1"};
-            let stateCopy = {...state};
-            stateCopy.message_data = [...state.message_data]
-            stateCopy.message_data.push(obj_tmp);
-            stateCopy.message_current = '';
-            return stateCopy;
-        }
-        case SETMESSAGECURRENT: {
-            let stateCopy = {...state};
-            stateCopy.message_current = action.message;
-            return stateCopy;
-        }
+            return  {
+                ...state,
+                message_data: [...state.message_data, obj_tmp],
+                message_current: ''
+            };
+        case SETMESSAGECURRENT:
+            return  {...state, message_current: action.message}
         default:
             return state;
     }

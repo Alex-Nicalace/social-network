@@ -1,0 +1,36 @@
+.Users {
+  margin: 0 30% 0 50px;
+  border: 1px solid white;
+  .UserRow {
+    display: flex;
+
+    .UserRow_leftColumn {
+      flex: 0 1 70px;
+      border: 1px solid white;
+
+      img {
+        height: 100px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .UserRow_rightColumn {
+      border: 1px solid red;
+      flex: 1 1 auto;
+
+      .UserRow_rightColumn_top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .UserRow_rightColumn_mid {
+        text-align: right;
+      }
+    }
+  }
+}
+

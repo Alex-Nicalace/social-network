@@ -7,16 +7,17 @@ import App from "./App";
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
-    ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App />
-                </Provider>
-            </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
-    )
+ReactDOM.render(
+    // <React.StrictMode>
+    // из-за этого тега на 49 уроке в users дублировался массив
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    // </React.StrictMode>
+    ,document.getElementById('root')
+)
 
 
 //RerenderDOM();
