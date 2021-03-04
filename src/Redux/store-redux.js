@@ -13,4 +13,6 @@ let reducer = combineReducers({
 
 let store = createStore(reducer);
 
+window.store = store; // чтобы можно было в консоли узучить что внутри
+
 export default store;

@@ -1,5 +1,6 @@
 const SET_POST = 'SET-POST';
 const SET_POST_CURRENT = 'SET-POST-CURRENT';
+const SET_PROFILE = 'SET_PROFILE';
 
 let InitialState = {
     post_data: [
@@ -10,9 +11,11 @@ let InitialState = {
         {message: 'girl', likeCount: '2', id_post: "5"}
     ],
     current_post: 'Hello !!!',
+    profile:null,
 }
 
 const profileReducer = (state = InitialState, action) => {
+    debugger;
     switch (action.type) {
         case SET_POST:
             let ObjMess = {message: state.current_post, likeCount: '0', id_post: "6"};
@@ -26,6 +29,12 @@ const profileReducer = (state = InitialState, action) => {
                 ...state,
                 current_post: action.post
             }
+        case SET_PROFILE:{
+            return{
+                ...state,
+                profile: {...action.profile},
+            }
+        }
         default:
             return state;
     }
@@ -34,5 +43,6 @@ const profileReducer = (state = InitialState, action) => {
 
 export default profileReducer;
 
-export const SetPost_ActionCreate = () => ({type: SET_POST});
-export const SetPostCurrent_ActionCreate = (text) => ({type: SET_POST_CURRENT, post: text});
+export const SetPost = () => ({type: SET_POST});
+export const SetPostCurrent = (text) => ({type: SET_POST_CURRENT, post: text});
+export const SetProfile = (profile) => ({type: SET_PROFILE, profile})

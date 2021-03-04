@@ -3,7 +3,6 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-    debugger;
     let post_elements = props.post_data.map(item => <Post message={item.message}
                                                                       likeCount={item.likeCount}/>);
     let ref_dom_element = React.createRef();
@@ -32,11 +31,6 @@ const MyPosts = (props) => {
             </div>
             <div className={s.Post}>
                 {post_elements}
-                {/*<Post message={post_data[0].message} likeCount={post_data[0].likeCount} />*/}
-                {/*<Post message='how are you' likeCount='5'/>*/}
-                {/*<Post message='react' likeCount='4'/>*/}
-                {/*<Post message='boy' likeCount='3'/>*/}
-                {/*<Post message='girl' likeCount='2'/>*/}
             </div>
         </div>
 
