@@ -1,9 +1,11 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const SET_COUNT_USER = 'SET_COUNT_USER';
 
 let InitialState = {
-    users_data: [
+    items: [
 /*        {
             avatarUrl: 'https://peopletalk.ru/wp-content/uploads/2018/03/65.jpg',
             name: 'Саша',
@@ -36,7 +38,10 @@ let InitialState = {
             location: {country: 'Россия', city: 'Москва'},
             id_user: 4
         },*/
-    ]
+    ],
+    countUser: 0,
+    sizePage: 10,
+    currentPage: 1,
 }
 
 const usersReducer = (state = InitialState, action) => {
@@ -45,8 +50,8 @@ const usersReducer = (state = InitialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users_data: state.users_data.map(item => {
-                    if (item.id_user === action.id_user) {
+                items: state.items.map(item => {
+                    if (item.id === action.id) {
                         return {...item, followed: true}
                     }
                     return item;
@@ -55,15 +60,21 @@ const usersReducer = (state = InitialState, action) => {
         case UNFOLLOW:
             return {
                 ...state,
-                users_data: state.users_data.map(item => {
-                    if (item.id_user === action.id_user) {
+                items: state.items.map(item => {
+                    if (item.id === action.id) {
                         return {...item, followed: false}
                     }
                     return item;
                 })
             }
         case SET_USERS: {
-            return {...state, users_data: [ ...state.users_data, ...action.users_data] }
+            return {...state, items: [ ...action.items] }
+        }
+        case SET_CURRENT_PAGE:{
+            return {...state, currentPage: action.currentPage}
+        }
+        case SET_COUNT_USER:{
+            return {...state, countUser: action.count}
         }
         default:
             return state;
@@ -73,6 +84,8 @@ const usersReducer = (state = InitialState, action) => {
 
 export default usersReducer;
 
-export const followAC = (id_user) => ({type: FOLLOW, id_user});
-export const unfollowAC = (id_user) => ({type: UNFOLLOW, id_user});
-export const setUsersAC = (users_data) => ({type: SET_USERS, users_data})
+export const followAC = (id) => ({type: FOLLOW, id});
+export const unfollowAC = (id) => ({type: UNFOLLOW, id});
+export const setUsersAC = (items) => ({type: SET_USERS, items});
+export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setCountUserAC = (count) => ({type: SET_COUNT_USER, count})

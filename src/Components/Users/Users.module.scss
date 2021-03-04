@@ -34,3 +34,15 @@
   }
 }
 
+.pagesList {
+  display: flex;
+  flex-wrap: wrap;
+  .pagesItem{
+    flex: 0 0 40px;
+    //border: 1px solid red;
+  }
+  .currentPage {
+    font-weight: bold;
+  }
+}
+

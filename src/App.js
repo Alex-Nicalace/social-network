@@ -20,7 +20,7 @@ function App(props) {
                 {/*<Route path='/Profile' component={() =>  <Profile post_elements = {props.post_elements} />}/>*/}
                 <Route path='/Profile' render={() => <Profile/>}/>
                 <Route path='/Dialogs' render={() => <DialogsContainer/>}/>
-                <Route path='/Users' render={() => <UsersContainer/>}/>
+                <Route path='/UsersAPI' render={() => <UsersContainer/>}/>
                 <Route path='/Music' component={Music}/>
                 <Route path='/News' component={News}/>
                 <Route path='/Settings' component={Settings}/>
