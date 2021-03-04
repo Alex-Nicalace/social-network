@@ -1,8 +1,16 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followAC, setCountUserAC, setCurrentPageAC, setUsersAC, unfollowAC} from "../../Redux/users-reducer";
-import * as axias from "axios";
+import {
+    followAC,
+    setCountUserAC,
+    setCurrentPageAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC
+} from "../../Redux/users-reducer";
+import * as axios from "axios";
 import Users from "./Users";
+import Preloading from "../Common/Preloading/Preloading";
 
 class UsersAPI extends React.Component {
 
@@ -11,25 +19,32 @@ class UsersAPI extends React.Component {
     }
 
     componentDidMount() {
-        axias.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.sizePage}&page=${this.props.currentPage}`).then(response => {
+        this.props.toggleIsFetching(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.sizePage}&page=${this.props.currentPage}`).then(response => {
             this.props.on_setUsersAC(response.data.items);
             this.props.setCountUser(response.data.totalCount);
+            this.props.toggleIsFetching(false);
         });
     }
 
     OnSetCurrentPage = (numPage) => {
         this.props.setCurrentPage(numPage);
+        this.props.toggleIsFetching(true);
 
-        axias.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.sizePage}&page=${numPage}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.sizePage}&page=${numPage}`).then(response => {
             this.props.on_setUsersAC(response.data.items);
+            this.props.toggleIsFetching(false);
         })
     }
 
     render() {
         return (
-            <Users items={this.props.items} on_unfollow={this.props.on_unfollow} on_follow={this.props.on_follow}
-                   countUser={this.props.countUser} sizePage={this.props.sizePage}
-                   OnSetCurrentPage={this.OnSetCurrentPage} currentPage={this.props.currentPage}/>
+            <>
+                {this.props.isFetching && <Preloading/>}
+                <Users items={this.props.items} on_unfollow={this.props.on_unfollow} on_follow={this.props.on_follow}
+                       countUser={this.props.countUser} sizePage={this.props.sizePage}
+                       OnSetCurrentPage={this.OnSetCurrentPage} currentPage={this.props.currentPage}/>
+            </>
         )
     }
 }
@@ -40,11 +55,11 @@ let mapStateToProps = (state) => {
         countUser: state.UsersPage.countUser,
         sizePage: state.UsersPage.sizePage,
         currentPage: state.UsersPage.currentPage,
+        isFetching: state.UsersPage.isFetching,
     }
 }
 
 let mapDispatchToProps = (dispatch) => {
-    debugger
     return {
         on_follow: (id) => {
             let action = followAC(id);
@@ -64,6 +79,10 @@ let mapDispatchToProps = (dispatch) => {
         setCountUser: (count) => {
             dispatch(setCountUserAC(count))
         },
+        toggleIsFetching: (IsFetching) => {
+            dispatch(toggleIsFetchingAC(IsFetching))
+        },
+
     }
 
 }
