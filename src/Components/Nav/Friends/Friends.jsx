@@ -3,7 +3,6 @@ import s from "./Friends.module.css";
 
 const Friends = (props) => {
     const FriendsItem = (props) => {
-        //debugger;
         return (
             <div className={s.Friends__item}>
                 <div className={s.Friends__avatar}>
@@ -16,7 +15,7 @@ const Friends = (props) => {
         )
     }
 
-    let friends_elements = props.friends.map(item => <FriendsItem friend={item}/>)
+    let friends_elements = props.friends.map((item, index) => <FriendsItem friend={item} key={index}/>)
 
     return (
         <div className={s.Friends}>

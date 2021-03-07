@@ -3,8 +3,8 @@ import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-    let post_elements = props.post_data.map(item => <Post message={item.message}
-                                                                      likeCount={item.likeCount}/>);
+    let post_elements = props.post_data.map((item, index) => <Post message={item.message}
+                                                                      likeCount={item.likeCount} key={index}/>);
     let ref_dom_element = React.createRef();
     let OnClickButton = () => {
         //props.dispatch(SetPost_ActionCreate());

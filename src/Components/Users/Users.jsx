@@ -5,23 +5,20 @@ import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
     const UserItem = (props) => {
+        const onClickButton = (followed) => followed ? props.deleteFollow(props.u.id) :  props.setFollow(props.u.id);
         return (
             <div className={s.UserRow} key={props.u.id}>
                 <div className={s.UserRow_leftColumn}>
                     <div className={s.avatar}>
-                        <NavLink to={'/Profile/'+props.u.id}>
+                        <NavLink to={'/Profile/' + props.u.id}>
                             <img src={props.u.photos.small ? props.u.photos.small : userPhoto} alt=""/>
                         </NavLink>
                     </div>
                     <div>
-                        {props.u.followed
-                            ? <button onClick={() => {
-                                props.unfollow(props.u.id)
-                            }}>unfollow</button>
-                            : <button onClick={() => {
-                                props.follow(props.u.id)
-                            }}>follow</button>
-                        }
+                        <button onClick={() => onClickButton(props.u.followed)}
+                                disabled={props.followingInProgress.some(item => item === props.u.id)}>
+                            {props.u.followed ? 'unfollow' : 'follow'}
+                        </button>
                     </div>
                 </div>
                 <div className={s.UserRow_rightColumn}>
@@ -40,15 +37,19 @@ const Users = (props) => {
 
     }
 
-    let users_data = props.items.map(item => <UserItem u={item} follow={props.follow}
-                                                       unfollow={props.unfollow}/>)
+    let users_data = props.items.map((item, index) => <UserItem u={item}
+                                                                key={index}
+                                                                followingInProgress={props.followingInProgress}
+                                                                deleteFollow={props.deleteFollow}
+                                                                setFollow={props.setFollow}/>)
 
     let pagesArray = [];
     for (let i = 1; i <= Math.ceil(props.countUser / props.sizePage); i++) {
         pagesArray.push(i);
     }
-    let pages_data = pagesArray.map(item => <div onClick={() => props.OnSetCurrentPage(item)}
-                                                 className={`${item === props.currentPage ? s.currentPage : ""} ${s.pagesItem}`}>{item}</div>)
+    let pages_data = pagesArray.map((item, index) => <div onClick={() => props.OnSetCurrentPage(item)}
+                                                          className={`${item === props.currentPage ? s.currentPage : ""} ${s.pagesItem}`}
+                                                          key={index}>{item}</div>)
 
     return (
         <div>

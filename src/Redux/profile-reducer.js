@@ -1,3 +1,5 @@
+import {profileAPI} from "../API/api";
+
 const SET_POST = 'SET-POST';
 const SET_POST_CURRENT = 'SET-POST-CURRENT';
 const SET_PROFILE = 'SET_PROFILE';
@@ -15,7 +17,6 @@ let InitialState = {
 }
 
 const profileReducer = (state = InitialState, action) => {
-    debugger;
     switch (action.type) {
         case SET_POST:
             let ObjMess = {message: state.current_post, likeCount: '0', id_post: "6"};
@@ -46,3 +47,10 @@ export default profileReducer;
 export const SetPost = () => ({type: SET_POST});
 export const SetPostCurrent = (text) => ({type: SET_POST_CURRENT, post: text});
 export const SetProfile = (profile) => ({type: SET_PROFILE, profile})
+
+export const getProfile = (userId) => (dispatch) => {
+    if (!userId) userId = 2
+    profileAPI.getProfile(userId).then(data => {
+        dispatch(SetProfile(data));
+    })
+}
