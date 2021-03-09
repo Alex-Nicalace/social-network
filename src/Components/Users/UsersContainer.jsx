@@ -4,10 +4,11 @@ import {
     deleteFollow,
     getUsers,
     setFollow,
-    toggleFollowingInProgress,
 } from "../../Redux/users-reducer";
 import Users from "./Users";
 import Preloading from "../Common/Preloading/Preloading";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 class UsersAPI extends React.Component {
 
@@ -52,10 +53,14 @@ let mapStateToProps = (state) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {
+// const UsersContainer = connect(mapStateToProps, {
+//     getUsers,
+//     deleteFollow,
+//     setFollow
+// })(withAuthRedirect(UsersAPI));
+
+export default compose(connect(mapStateToProps, {
     getUsers,
     deleteFollow,
     setFollow
-})(UsersAPI);
-
-export default UsersContainer;
+}), withAuthRedirect)(UsersAPI);

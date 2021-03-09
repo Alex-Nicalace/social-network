@@ -1,15 +1,17 @@
 import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {getMe, setAuthUserData, toggleIsFetching} from "../../Redux/auth-reducer";
-import {authAPI} from "../../API/api";
+import {getMe} from "../../Redux/auth-reducer";
 
 class HeaderApi extends React.Component {
+
     componentDidMount() {
+
         this.props.getMe();
     }
 
     render() {
+        debugger;
         return (
             <Header login={this.props.login} isAuth={this.props.isAuth}/>
         )
